@@ -21,13 +21,13 @@ class Acronimo
 
     public function generar(): string
     {
-        // los guiones se tratan como espacios
+    
         $texto = str_replace('-', ' ', $this->frase);
-        // se borra todo lo que no sea letra, número o espacio
+
         $texto = preg_replace('/[^\p{L}\p{N}\s]/u', '', $texto);
-        //se parte en palabras (ignora espacios repetidos
+    
         $palabras = preg_split('/\s+/u', $texto, -1, PREG_SPLIT_NO_EMPTY);
-        // se toma la primera letra de cada palabra en mayúscula
+       
         $sigla = '';
         foreach ($palabras as $palabra) {
             $sigla .= mb_strtoupper(mb_substr($palabra, 0, 1));
@@ -35,7 +35,6 @@ class Acronimo
         return $sigla;
     }
 }
- //controlador
 $frase = '';
 $resultado = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {   // ¿se envió el formulario?
